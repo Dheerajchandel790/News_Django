@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{%block con %}
+    <!--  newsssss -->
+    <section class="news">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              {% for news in b %}
+              <div class="row  border-2 mb-4 mt-4" >
+                <div class="col-md-5">
+                  <img src="/media/{{news.img}}" alt="" style="height:50vh; width: 100%;">
+                </div>
+                <div class="col-md-5 offset-1">
+                  <small class='text-danger'>{{news.date}}</small>
+                  <small class='text-danger ms-4 '>{{news.Categoery}}</small>
+                  <h1 >{{news.title | truncatewords:8  }}</h1>
+                  <p>{{news.description | truncatewords:30}} </p>
+                  <form class="d-flex" action="{% url "read" %}" method="POST" >
+                    {% csrf_token %}
+                    <input class="form-control me-2" type="hidden" value={{news.id}} name = 'read' aria-label="Search">
+                    <button  class="btn btn-outline-danger" type="submit"> Read more</button>
+                  </form>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            <div class="col-md-4"></div>
+          </div>
+        </div>
+      </section>
+      {% endblock con %}
+  

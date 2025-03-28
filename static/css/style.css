@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.ul a{
+    text-decoration: none;
+    color: black;
+}
+#nav1{
+    display: none; 
+}
+
+@media screen and (max-width:767px) {
+    #categoery{
+        display: none;
+    }
+    #nav2{
+        display: none;
+        
+    }
+    #nav1{
+        display: block;
+        
+    }
+}

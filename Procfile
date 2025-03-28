@@ -1,0 +1,1 @@
+echo "web: gunicorn News24.wsgi"> Procfile
