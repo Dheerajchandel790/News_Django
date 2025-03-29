@@ -1,61 +1,101 @@
 from django.shortcuts import render,redirect
+from django.http import HttpResponseNotFound
 from news.models  import Categoery, News
 
 from django.contrib.auth.models import User
 
+
+
+
 def home(request):
-    categoery = Categoery.objects.all()
-    news = News.objects.all()
-    return render(request, 'index.html', {'categoery': categoery,'news': news })
+    try:
+        categoery = Categoery.objects.all()
+        news = News.objects.all()
+        return render(request, 'index.html', {'categoery': categoery,'news': news })    
+    except:
+        return render(request, 'eorrr.html')
+
+def india(request):
+    try:     
+        categoery = Categoery.objects.all()
+        news = News.objects.filter( Categoery__title = 'India News' )
+        return render(request, 'india.html', {'categoery': categoery,'news': news })
+    except:
+        return render(request, 'eorrr.html')
+    
+def bolly(request):
+    try: 
+        categoery = Categoery.objects.all()
+        news = News.objects.filter( Categoery__title = 'Bollywood' )
+        return render(request, 'bolly.html', {'categoery': categoery,'news': news })
+    except:
+        return render(request, 'eorrr.html')
+    
+def agri(request): 
+    
+    try:
+        categoery = Categoery.objects.all()
+        news = News.objects.filter( Categoery__title = 'Agriculture' )
+        return render(request, 'agri.html', {'categoery': categoery,'news': news })
+    except:
+        return render(request, 'eorrr.html')
+
+def tech(request):
+    try:
+        categoery = Categoery.objects.all()
+        news = News.objects.filter( Categoery__title = 'Tech' )
+        return render(request, 'tech.html', {'categoery': categoery,'news': news })
+    except:
+        return render(request, 'eorrr.html')
+    
+def sports(request):
+    try:
+        categoery = Categoery.objects.all()
+        news = News.objects.filter( Categoery__title = 'Sports' )
+        return render(request, 'sports.html', {'categoery': categoery,'news': news })
+    except:
+        return render(request, 'eorrr.html')
+
+def anime(request):
+    try:
+        categoery = Categoery.objects.all()
+        news = News.objects.filter( Categoery__title = 'Anime' )
+        return render(request, 'anime.html', {'categoery': categoery,'news': news })
+    except:
+        return render(request, 'eorrr.html')
+
+def healthy(request):
+    try:
+        categoery = Categoery.objects.all()
+        news = News.objects.filter( Categoery__title = 'Healthy' )
+        return render(request, 'healthy.html', {'categoery': categoery,'news': news })
+    except:
+        return render(request, 'eorrr.html')
 
 def search( request):
-    categoery = Categoery.objects.all()
-    news = News.objects.all()
-    search = request.GET.get('search')
-    search_items = News.objects.filter( title__icontains = search)
-    return render( request, 'search.html',
+    try:
+        categoery = Categoery.objects.all()
+        news = News.objects.all()
+        search = request.GET.get('search')
+        search_items = News.objects.filter( title__icontains = search)
+        return render( request, 'search.html',
                   { 'search_items':search_items,
                    'news': news ,
                    'categoery' :  categoery, })
-
+    except:
+        return render(request, 'eorrr.html')
+    
 def read(request):
-    if request.method == 'POST':
-        y = request.POST.get('read')
-        read_items = News.objects.get( pk = y)
+    try:
+        if request.method == 'POST':
+            y = request.POST.get('read')
+            read_items = News.objects.get( pk = y)
     
 
-    return render(request, 'read.html' , {'read_items':read_items})
-    
-    
-def  Dynamic_View(request , x):
-    categoery = Categoery.objects.all()
-    news = News.objects.all()
-    b = News.objects.filter(Categoery__title =  x)
-    return render(request , 'dynamic.html ' , {'b':b , 'news': news ,'categoery': categoery})
+        return render(request, 'read.html' , {'read_items':read_items})
+    except:
+        return render(request, 'eorrr.html')
 
 
-def login_page(request):
-    
-    if request.method == 'GET':
-        username = request.GET.get('username')
-        passward = request.GET.get('passward')
-    
-    if User.objects.filter( username = username ).exists():
-        return  redirect (request, 'index.html')
-
-def reg(request):
-    if request.method == 'GET':
-        firstname = request.GET.get('first_name')
-        lastname =request.GET.get('last_name')
-        username = request.GET.get('username')
-        
-    
-        user = User.objects.create(
-             first_name = firstname,
-             last_name  =lastname,
-             username  = username,
-            
-             )
-        user.save()
-
-    return  render(request, 'register.html')
+def custom_404_view(request, expection=None):
+    return render(request, 'eorrr.html' ,status = 404 )
