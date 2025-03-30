@@ -2,7 +2,7 @@
 
 {% block con %}
 
-<h1 class='bg-danger text-light text-center'> All News </h1>
+<h1 class='bg-danger text-light text-center'> India News </h1>
   
     <!--  newsssss -->
     <section class="news">
@@ -19,7 +19,7 @@
                 <small class='text-danger ms-4 '>{{news.Categoery}}</small>
                 <h3 >{{news.title | truncatewords:10  }}</h3>
                 <p>{{news.description | truncatewords:32}} </p>
-                <form class="d-flex" action="{% url "read" %}" method="POST" >
+                                <form class="d-flex" action="{% url "read" %}" method="POST" >
                   {% csrf_token %}
                   <input class="form-control me-2" type="hidden" value={{news.id}} name = 'read'>
                   <input class="form-control me-2" type="hidden" value={{news.id}} name = 'comm'>

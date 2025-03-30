@@ -12,15 +12,19 @@ try:
     urlpatterns = [
         path('admin/', admin.site.urls),
         path('', views.home , name='home'), 
-        path('search/' ,views.search , name='search'), 
+        
+        path('all/' ,views.all , name='all'), 
+        
 
-        path('agri/' ,views.agri , name='agri'), 
-        path('anime/' ,views.anime , name='anime'), 
-        path('sports/' ,views.sports , name='sports'), 
-        path('bolly/' ,views.bolly , name='bolly'), 
-        path('india/' ,views.india , name='india'), 
-        path('tech/' ,views.tech , name='tech'), 
-        path('healthy/' ,views.healthy , name='healthy'),  
+        path('search/' ,views.search , name='search'), 
+        path('Agriculture/' ,views.agri , name='agri'), 
+        path('Anime/' ,views.anime , name='anime'), 
+        path('Sports/' ,views.sports , name='sports'), 
+        path('Bollywood/' ,views.bolly , name='bolly'), 
+        path('India News/' ,views.india , name='india'), 
+        path('Tech/' ,views.tech , name='tech'), 
+        path('Healthy/' ,views.healthy , name='healthy'),  
+        path('Cars News/' ,views.car , name='cars'),  
         path('read/' ,views.read , name='read'),  
     ] + static (settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 except:
