@@ -9,19 +9,14 @@
     color: black;
 }
 #nav1{
-    display: none; 
+    position: fixed;
+    top: 0;
 }
+
+
 
 @media screen and (max-width:767px) {
     #categoery{
         display: none;
-    }
-    #nav2{
-        display: none;
-        
-    }
-    #nav1{
-        display: block;
-        
     }
 }
