@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block con %}
+
+
+<!--===============News Start=============-->
+<section class="news mb-5" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9 border-end border-3" >
+          
+  
+         
+            <div class="p-5">
+              <img src="/media/{{read_items.img }}" class="img-fluid rounded border-4" style="width: 100%;" alt="">
+            </div>
+            <div class=" px-3">
+              <h2>{{ read_items.title }}</h2>
+              <small class='text-success'>
+                Published {{ read_items.date }}
+                {{ news.category }}
+              </small>
+              <p>
+                {{ read_items.description | safe}}
+              </p>
+              <a class='btn btn-outline-success' href="{% url "home" %}"> Back </a>
+             
+
+            </div>
+         
+          
+          
+        </div>
+        <div class="col-md-3">
+          <h2>Top News</h2>
+          {% for news in topNews %}
+          <a href="{% url "read" news.id %}"class="link-danger" >
+            <div class="row">
+            <div class="col-md-4">
+              <img class="img-fiuld" src="/media/{{ news.img }}" style="width: 15vw; height: 15vh;" alt="">
+            </div>
+            <div class="col-md8">
+              <p>{{ news.title | truncatewords:10 }}</p>
+            </div>
+          </div>
+        </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  
+   </section>
+  
+   {% endblock con %}
+
+
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Read </title>
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <title>News24</title>
+    
+</head>
+<body class='container'>
+
+        <!--  newsssss -->
+        <section class="news">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="row border-end border-2 mb-4 mt-4" >
+                    <div class="">
+                      <img src="/media/{{read_items.img}}" alt="" style="height:50vh; width: 100%;">
+                    </div>
+                    <div >
+                      <small class='text-danger'>{{read_items.date}}</small>
+                      <small class='text-danger ms-4 '>{{read_items.Categoery}}</small>
+                      <h1 >{{read_items.title   }}</h1>
+                      <p>{{read_items.description }} </p>
+                      <p> <a href="{% url "home" %}" class='btn btn-dark'> Back </a></p>
+                    </div>
+                  </div>
+                </div>
+
+                
+              </div>
+            </div>
+          </section>    
+</body>
+</html> {% endcomment %}

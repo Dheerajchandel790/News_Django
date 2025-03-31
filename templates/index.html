@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+  {% block con %}
+
+  <div  id='categoery' class="row" style='margin: 8% 0 10%'>
+    {% for rec in categoery %}
+      <div class="col" id='d'>
+          <div class="card mt-4" id='d'  style="width: 18rem;  border: 2px solid black">
+            <img src="\media/{{rec.img}}" class="card-img-top object-fit-cover  " style='height: 35vh'>
+            <div class="card-body">
+                <h5 class="card-title ms-5 text-warning">{{rec.title}}</h5>
+                <a href="{{rec.title}}" class="btn btn-danger" style='width:15rem'>{{rec.title}} </a>
+            </div>
+          </div>
+        </div>
+            {% endfor %}
+  </div>
+
+    <!--===============News Start=============-->
+<section class="news">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 border-end border-3" >
+        {% for news in news %}
+
+        <div class="row my-5">
+          <div class="col-md-4">
+            <img src="/media/{{news.img}}" class="img-fluid" style="width: 90vw; height: 40vh" alt=""/>
+          </div>
+          <div class="col-md-7 px-3">
+            <small class='text-success'>
+              Published {{ news.date }}
+              {{ news.category }}
+            </small>
+            <h2>{{ news.title | truncatewords:10 }}</h2>
+            
+            <p>
+              {{ news.description | truncatewords:30 | safe }}</p>
+            <a href="{% url 'read' news.id %}" 
+            class="btn btn-danger">Read More</a>
+            
+          </div>
+        </div>
+       
+        
+        {% endfor %}
+      </div>
+      <div class="col-md-3">
+        <h2 class='my-4'>Top News</h2>
+        {% for news in topNews %}
+        <a href="{% url "read" news.id %}" class="link-danger" >
+          <div class="row">
+          <div class="col-md-4">            
+            <img class="img-fiuld object-fit-cover" src="/media/{{ news.img }}" alt=""/ style='height:80px;  width:80px;'>
+          </div>
+          <div class="col-md-8">
+            <p>{{ news.title | truncatewords:10 }}</p>
+          </div>
+        </div>
+      </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+ </section>
+
+  {% endblock con %}
+
+
+
+
+
